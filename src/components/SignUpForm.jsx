@@ -28,8 +28,6 @@ const SignUpForm = ({token, setToken}) => {
         } catch (error) {
           setError(error.message)
         }
-        
-        form.reset();
     }
     return ( 
     <>
