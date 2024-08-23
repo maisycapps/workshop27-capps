@@ -5,6 +5,7 @@ const Authenticate = ({token, setToken}) => {
     const [error, setError] = useState(null)
     const [successMessage, setSuccessMessage] = useState(null)
     const [data, setData] = useState(null)
+    console.log(successMessage)
 
     async function handleClick() {
         try {
@@ -16,13 +17,14 @@ const Authenticate = ({token, setToken}) => {
                 }
             })
             const result = await response.json()
-            
-            setSuccessMessage(result.message)
             setData(result.data)
+            console.log(result)
 
+            setSuccessMessage(result.message)
+           
         } catch (error) {
 
-            setError(error.message)
+            setError("hey terry")
         }
 
     }
@@ -38,11 +40,7 @@ const Authenticate = ({token, setToken}) => {
             </>
         )}
         
-        {successMessage && <p>{successMessage}</p>}
-
-        {error && <p>{error}</p>}
-
-
+        {successMessage === "jwt malformed" ? <p>This is a problem</p> : <p>{successMessage}</p>}
 
         <button onClick={handleClick}>Authenticate Token</button>
     </>
